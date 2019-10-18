@@ -2,7 +2,7 @@ import React from 'react';
 import Welcome from '../welcome/welcome';
 
 const App = () => {
-  return <Welcome />;
+  return <Welcome gameTime="7" availableMistakes="4"/>;
 };
 
 export default App;
