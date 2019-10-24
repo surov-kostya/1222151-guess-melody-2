@@ -43,6 +43,7 @@ class App extends PureComponent {
 
     this.state = {
       questionOrder: -1,
+      answers: []
     };
   }
 
@@ -55,7 +56,7 @@ class App extends PureComponent {
     } = this.props;
     const {questionOrder} = this.state;
 
-    return App.getScreen(questionOrder, this.props, () => {
+    return App.getScreen(questionOrder, this.props, (answers) => {
       this.setState((prevState) => {
         const nextIndex = prevState.questionOrder + 1;
         const isEnd = nextIndex >= questions.length;
@@ -63,6 +64,7 @@ class App extends PureComponent {
         return {
           ...prevState,
           questionOrder: !isEnd ? nextIndex : -1,
+          answers: [...prevState.answers, answers]
         };
       });
     });

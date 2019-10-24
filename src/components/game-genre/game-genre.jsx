@@ -7,6 +7,15 @@ export const GameGenre = ({question, screenIndex, onAnswer}) => {
     answers,
     genre,
   } = question;
+  let chosenAnswers = [];
+
+  const answerHelper = (answer, checked, index) => {
+    if (checked) {
+      chosenAnswers[index] = answer;
+    } else {
+      delete chosenAnswers[index];
+    }
+  };
 
   return (
     <section className="game game--genre">
@@ -33,9 +42,9 @@ export const GameGenre = ({question, screenIndex, onAnswer}) => {
         <h2 className="game__title">Выберите {genre} треки</h2>
         <form className="game__tracks" onSubmit={(evt) => {
           evt.preventDefault();
-          onAnswer();
+          onAnswer(chosenAnswers.filter((item) => item));
         }}>
-          {answers.map((it, i) => {
+          {answers.map((item, i) => {
             return (
               <div key={`${screenIndex}-answer-${i}`} className="track">
                 <button className="track__button track__button--play" type="button" />
@@ -44,6 +53,7 @@ export const GameGenre = ({question, screenIndex, onAnswer}) => {
                 </div>
                 <div className="game__answer">
                   <input
+                    onChange={(event) => answerHelper(item, event.target.checked, i)}
                     className="game__input visually-hidden"
                     type="checkbox" name="answer"
                     value={`answer-${i}`}

@@ -2,14 +2,29 @@ import React from 'react';
 import GameArtist from './game-artist';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {gameQuestions} from '../../mocks/questions';
 
 Enzyme.configure({adapter: new Adapter()});
 
+const mockAnswers = [{
+  picture: `http://placehold.it/134x134`,
+  artist: `John Snow`,
+}];
+
+const mockQuestion = {
+  type: `artist`,
+  song: {
+    artist: `Jim Beam`,
+    src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
+  },
+  answers: mockAnswers
+};
+
 it(`Should transmit correct data on answer`, () => {
   const clickHandler = jest.fn();
-  const gameArtist = shallow(<GameArtist question={gameQuestions[2]} screenIndex={2} onAnswer={clickHandler}/>);
-  const form = gameArtist.find(`form.game__artist`);
-  form.simulate(`change`);
-  expect(clickHandler).toHaveBeenCalledTimes(1);
+  const gameArtist = shallow(<GameArtist question={mockQuestion} screenIndex={0} onAnswer={clickHandler}/>);
+  const radios = gameArtist.find(`input.artist__input`);
+  radios.forEach((item) => {
+    item.simulate(`change`);
+  });
+  expect(clickHandler).toBeCalledWith(mockAnswers);
 });

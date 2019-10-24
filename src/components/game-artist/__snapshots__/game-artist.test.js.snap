@@ -102,7 +102,6 @@ exports[`GameArtist renders correctly 1`] = `
     </div>
     <form
       className="game__artist"
-      onChange={[Function]}
     >
       <div
         className="artist"
@@ -111,6 +110,7 @@ exports[`GameArtist renders correctly 1`] = `
           className="artist__input visually-hidden"
           id="answer-0"
           name="answer"
+          onChange={[Function]}
           type="radio"
           value="answer-0"
         />
@@ -133,6 +133,7 @@ exports[`GameArtist renders correctly 1`] = `
           className="artist__input visually-hidden"
           id="answer-1"
           name="answer"
+          onChange={[Function]}
           type="radio"
           value="answer-1"
         />
@@ -155,6 +156,7 @@ exports[`GameArtist renders correctly 1`] = `
           className="artist__input visually-hidden"
           id="answer-2"
           name="answer"
+          onChange={[Function]}
           type="radio"
           value="answer-2"
         />

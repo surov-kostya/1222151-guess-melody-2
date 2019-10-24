@@ -42,11 +42,12 @@ export const GameArtist = ({question, screenIndex, onAnswer}) => {
           </div>
         </div>
 
-        <form className="game__artist" onChange={onAnswer}>
+        <form className="game__artist">
           {
             answers.map((item, i) => (
               <div key={`${screenIndex}-answer-${i}`} className="artist">
                 <input
+                  onChange={() => onAnswer([item])}
                   className="artist__input visually-hidden"
                   type="radio"
                   name="answer"
