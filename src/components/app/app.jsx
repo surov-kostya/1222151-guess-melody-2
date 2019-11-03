@@ -62,7 +62,6 @@ class App extends PureComponent {
         const isEnd = nextIndex >= questions.length;
 
         return {
-          ...prevState,
           questionOrder: !isEnd ? nextIndex : -1,
           answers: [...prevState.answers, answers]
         };
