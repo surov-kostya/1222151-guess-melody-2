@@ -7,18 +7,22 @@ Enzyme.configure({adapter: new Adapter()});
 
 const mockAnswers = [
   {
+    id: 100,
     src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
     genre: `rock`,
   },
   {
+    id: 101,
     src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
     genre: `pop`,
   },
   {
+    id: 102,
     src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
     genre: `jazz`,
   },
   {
+    id: 103,
     src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
     genre: `rock`,
   },

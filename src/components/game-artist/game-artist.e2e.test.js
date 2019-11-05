@@ -6,6 +6,7 @@ import Adapter from 'enzyme-adapter-react-16';
 Enzyme.configure({adapter: new Adapter()});
 
 const mockAnswers = [{
+  id: 101,
   picture: `http://placehold.it/134x134`,
   artist: `John Snow`,
 }];

@@ -91,6 +91,13 @@ exports[`GameArtist renders correctly 1`] = `
       >
         <button
           className="track__button track__button--play"
+          disabled={true}
+          onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         />
         <div
@@ -108,22 +115,22 @@ exports[`GameArtist renders correctly 1`] = `
       >
         <input
           className="artist__input visually-hidden"
-          id="answer-0"
+          id={200}
           name="answer"
           onChange={[Function]}
           type="radio"
-          value="answer-0"
+          value={200}
         />
         <label
           className="artist__name"
-          htmlFor="answer-0"
+          htmlFor={200}
         >
           <img
-            alt="John Snow"
+            alt="Bad Snacks"
             className="artist__picture"
             src="http://placehold.it/134x134"
           />
-          John Snow
+          Bad Snacks
         </label>
       </div>
       <div
@@ -131,15 +138,15 @@ exports[`GameArtist renders correctly 1`] = `
       >
         <input
           className="artist__input visually-hidden"
-          id="answer-1"
+          id={201}
           name="answer"
           onChange={[Function]}
           type="radio"
-          value="answer-1"
+          value={201}
         />
         <label
           className="artist__name"
-          htmlFor="answer-1"
+          htmlFor={201}
         >
           <img
             alt="Jack Daniels"
@@ -154,15 +161,15 @@ exports[`GameArtist renders correctly 1`] = `
       >
         <input
           className="artist__input visually-hidden"
-          id="answer-2"
+          id={202}
           name="answer"
           onChange={[Function]}
           type="radio"
-          value="answer-2"
+          value={202}
         />
         <label
           className="artist__name"
-          htmlFor="answer-2"
+          htmlFor={202}
         >
           <img
             alt="Jim Beam"

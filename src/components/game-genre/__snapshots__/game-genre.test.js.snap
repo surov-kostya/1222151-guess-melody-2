@@ -61,7 +61,7 @@ exports[`GameGenre renders correctly 1`] = `
       className="game__title"
     >
       Выберите 
-      rock
+      Hip Hop & Rap
        треки
     </h2>
     <form
@@ -73,6 +73,13 @@ exports[`GameGenre renders correctly 1`] = `
       >
         <button
           className="track__button track__button--play"
+          disabled={true}
+          onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         />
         <div
@@ -86,7 +93,7 @@ exports[`GameGenre renders correctly 1`] = `
           <input
             className="game__input visually-hidden"
             id="answer-0"
-            name="answer"
+            name="answer-0"
             onChange={[Function]}
             type="checkbox"
             value="answer-0"
@@ -104,6 +111,13 @@ exports[`GameGenre renders correctly 1`] = `
       >
         <button
           className="track__button track__button--play"
+          disabled={true}
+          onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         />
         <div
@@ -117,7 +131,7 @@ exports[`GameGenre renders correctly 1`] = `
           <input
             className="game__input visually-hidden"
             id="answer-1"
-            name="answer"
+            name="answer-1"
             onChange={[Function]}
             type="checkbox"
             value="answer-1"
@@ -135,6 +149,13 @@ exports[`GameGenre renders correctly 1`] = `
       >
         <button
           className="track__button track__button--play"
+          disabled={true}
+          onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         />
         <div
@@ -148,7 +169,7 @@ exports[`GameGenre renders correctly 1`] = `
           <input
             className="game__input visually-hidden"
             id="answer-2"
-            name="answer"
+            name="answer-2"
             onChange={[Function]}
             type="checkbox"
             value="answer-2"
@@ -166,6 +187,13 @@ exports[`GameGenre renders correctly 1`] = `
       >
         <button
           className="track__button track__button--play"
+          disabled={true}
+          onClick={[Function]}
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
           type="button"
         />
         <div
@@ -179,7 +207,7 @@ exports[`GameGenre renders correctly 1`] = `
           <input
             className="game__input visually-hidden"
             id="answer-3"
-            name="answer"
+            name="answer-3"
             onChange={[Function]}
             type="checkbox"
             value="answer-3"
