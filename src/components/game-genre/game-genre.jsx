@@ -9,6 +9,7 @@ class GameGenre extends PureComponent {
 
     this._answerHelper = this._answerHelper.bind(this);
     this._playClickHandler = this._playClickHandler.bind(this);
+    this._submitHandler = this._submitHandler.bind(this);
 
     this.state = {
       answers: props.question.answers,
@@ -45,8 +46,7 @@ class GameGenre extends PureComponent {
           <h2 className="game__title">Выберите {this.state.genre} треки</h2>
           <form className="game__tracks" onSubmit={(evt) => {
             evt.preventDefault();
-            this.setState({activePlayer: -1});
-            this.props.onAnswer(this.state.chosenAnswers.filter((item) => item));
+            this._submitHandler();
           }}>
             {this.state.answers.map((item, i) => {
               return (
@@ -99,6 +99,11 @@ class GameGenre extends PureComponent {
     this.setState((prevState) => (
       {activePlayer: prevState.activePlayer !== playerIndex ? playerIndex : -1}
     ));
+  }
+
+  _submitHandler() {
+    this.props.onAnswer(this.state.chosenAnswers.filter((item) => item));
+    this.setState({chosenAnswers: [], activePlayer: -1});
   }
 }
 
