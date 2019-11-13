@@ -3,23 +3,29 @@ const initialState = {
   mistakes: 0
 };
 
+export const ActionType = {
+  INC_STEP: `INC_STEP`,
+  INC_MISTAKES: `INC_MISTAKES`,
+  RESET: `RESET`
+};
+
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case `INC_STEP`:
+    case ActionType.INC_STEP:
       return Object.assign({}, state, {step: state.step + action.payload});
-    case `INC_MISTAKES`:
+    case ActionType.INC_MISTAKES:
       return Object.assign({}, state, {mistakes: state.mistakes + action.payload});
-    case `RESET`:
+    case ActionType.RESET:
       return Object.assign({}, initialState);
   }
 
   return state;
 };
 
-export const actionCreator = {
+export const ActionCreator = {
   incStep: () => {
     return {
-      type: `INC_STEP`,
+      type: ActionType.INC_STEP,
       payload: 1
     };
   },
@@ -38,35 +44,31 @@ export const actionCreator = {
 
     if (!answerIsCorrect && mistakes + 1 >= maxMistakes) {
       return {
-        type: `RESET`
+        type: ActionType.RESET
       };
     }
 
     if (stepsToEnd === 0) {
       return {
-        type: `RESET`
+        type: ActionType.RESET
       };
     }
 
     return {
-      type: `INC_MISTAKES`,
+      type: ActionType.INC_MISTAKES,
       payload: answerIsCorrect ? 0 : 1
     };
   }
 };
 
-const isArtistAnswerCorrect = (userAnswer, question) => {
+export const isArtistAnswerCorrect = (userAnswer, question) => {
   const rightAnswerId = question.answers
     .find((answer) => answer.artist === question.song.artist).id;
 
-  if (userAnswer[0].id !== rightAnswerId) {
-    return false;
-  }
-
-  return true;
+  return userAnswer[0].id === rightAnswerId;
 };
 
-const isGenreAnswerCorrect = (userAnswer, question) => {
+export const isGenreAnswerCorrect = (userAnswer, question) => {
   const rightAnswersIds = question.answers
     .filter((answer) => answer.genre === question.genre)
     .map((answer) => answer.id);
@@ -83,3 +85,5 @@ const isGenreAnswerCorrect = (userAnswer, question) => {
 
   return true;
 };
+
+

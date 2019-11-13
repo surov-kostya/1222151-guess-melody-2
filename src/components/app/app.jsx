@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {questionType} from '../../mocks/questions';
 
-import {actionCreator} from '../../reducer';
+import {ActionCreator} from '../../reducer';
 import Welcome from '../welcome/welcome';
 import GameArtist from '../game-artist/game-artist';
 import GameGenre from '../game-genre/game-genre';
@@ -79,10 +79,10 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onWelcomeScreenClick: () => dispatch(actionCreator.incStep()),
+  onWelcomeScreenClick: () => dispatch(ActionCreator.incStep()),
   onUserAnswer: (userAnswer, question, mistakes, maxMistakes, stepsToEnd) => {
-    dispatch(actionCreator.incStep());
-    dispatch(actionCreator.incMistakes(userAnswer, question, mistakes, maxMistakes, stepsToEnd));
+    dispatch(ActionCreator.incStep());
+    dispatch(ActionCreator.incMistakes(userAnswer, question, mistakes, maxMistakes, stepsToEnd));
   }
 });
 
