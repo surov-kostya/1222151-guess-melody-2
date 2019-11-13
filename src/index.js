@@ -8,6 +8,7 @@ import {reducer} from './reducer';
 
 const init = () => {
   const store = createStore(reducer);
+
   ReactDOM.render(<Provider store={store}>
     <App
       errorCount={settings.errorCount}

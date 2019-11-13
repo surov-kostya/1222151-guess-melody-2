@@ -2,46 +2,50 @@ import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {questionType} from '../../mocks/questions';
+
+import {actionCreator} from '../../reducer';
 import Welcome from '../welcome/welcome';
 import GameArtist from '../game-artist/game-artist';
 import GameGenre from '../game-genre/game-genre';
-import {actionCreator} from '../../reducer';
 import MistakesCounter from '../mistakes-counter/mistakes-counter';
 
 class App extends PureComponent {
-  static getScreen(questionOrder, props) {
-    if (questionOrder !== -1) {
-      const {questions, errorCount, mistakes, onUserAnswer} = props; // чем отличается mistakes от errorCount?
-      const currentQuestion = questions[questionOrder];
+  static getScreen(props) {
+    const {
+      gameTime,
+      errorCount,
+      onWelcomeScreenClick,
+      step,
+      questions
+    } = props;
+    const stepsToEnd = questions.length - step - 1;
+
+    if (step !== -1) {
+      const {mistakes, onUserAnswer} = props;
+      const currentQuestion = questions[step];
 
       switch (currentQuestion.type) {
         case `genre`: return <GameGenre
-          screenIndex={questionOrder}
           question={currentQuestion}
-          onAnswer={(userAnswer) => onUserAnswer(userAnswer, currentQuestion, mistakes, errorCount)}
+          onAnswer={(userAnswer) => onUserAnswer(userAnswer, currentQuestion, mistakes, errorCount, stepsToEnd)}
         >
-          <MistakesCounter mistakes={errorCount}/>
+          <MistakesCounter mistakes={mistakes}/>
         </GameGenre>;
 
         case `artist`: return <GameArtist
-          screenIndex={questionOrder}
+          screenIndex={step}
           question={currentQuestion}
-          onAnswer={(userAnswer) => onUserAnswer(userAnswer, currentQuestion, mistakes, errorCount)}
+          onAnswer={(userAnswer) => onUserAnswer(userAnswer, currentQuestion, mistakes, errorCount, stepsToEnd)}
         >
-          <MistakesCounter mistakes={errorCount}/>
+          <MistakesCounter mistakes={mistakes}/>
         </GameArtist>;
       }
     }
 
-    const {
-      gameTime,
-      errorCount,
-    } = props;
-
     return <Welcome
       gameTime={gameTime}
       availableMistakes={errorCount}
-      onStart={props.onWelcomeScreenClick}
+      onStart={onWelcomeScreenClick}
     />;
   }
 
@@ -49,15 +53,13 @@ class App extends PureComponent {
     super(props);
 
     this.state = {
-      questionOrder: -1,
+      step: -1,
       answers: []
     };
   }
 
   render() {
-    const {questionOrder} = this.state;
-
-    return App.getScreen(questionOrder, this.props);
+    return App.getScreen(this.props);
   }
 }
 
@@ -78,9 +80,9 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 
 const mapDispatchToProps = (dispatch) => ({
   onWelcomeScreenClick: () => dispatch(actionCreator.incStep()),
-  onUserAnswer: (userAnswer, question, mistakes, maxMistakes) => {
+  onUserAnswer: (userAnswer, question, mistakes, maxMistakes, stepsToEnd) => {
     dispatch(actionCreator.incStep());
-    dispatch(actionCreator.incMistakes(userAnswer, question, mistakes, maxMistakes));
+    dispatch(actionCreator.incMistakes(userAnswer, question, mistakes, maxMistakes, stepsToEnd));
   }
 });
 

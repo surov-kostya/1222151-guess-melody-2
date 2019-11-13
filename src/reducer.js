@@ -10,19 +10,21 @@ export const reducer = (state = initialState, action) => {
     case `INC_MISTAKES`:
       return Object.assign({}, state, {mistakes: state.mistakes + action.payload});
     case `RESET`:
-      return Object.assign({}, state, initialState);
+      return Object.assign({}, initialState);
   }
 
-  return undefined;
+  return state;
 };
 
 export const actionCreator = {
-  incStep: () => ({
-    type: `INC_STEP`,
-    payload: 1
-  }),
+  incStep: () => {
+    return {
+      type: `INC_STEP`,
+      payload: 1
+    };
+  },
 
-  incMistakes: (userAnswer, question, mistakes, maxMistakes) => {
+  incMistakes: (userAnswer, question, mistakes, maxMistakes, stepsToEnd) => {
     let answerIsCorrect = false;
 
     switch (question.type) {
@@ -35,6 +37,12 @@ export const actionCreator = {
     }
 
     if (!answerIsCorrect && mistakes + 1 >= maxMistakes) {
+      return {
+        type: `RESET`
+      };
+    }
+
+    if (stepsToEnd === 0) {
       return {
         type: `RESET`
       };
