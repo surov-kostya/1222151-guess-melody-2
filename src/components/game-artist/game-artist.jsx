@@ -35,11 +35,7 @@ class GameArtist extends PureComponent {
             <span className="timer__secs">00</span>
           </div>
 
-          <div className="game__mistakes">
-            <div className="wrong"></div>
-            <div className="wrong"></div>
-            <div className="wrong"></div>
-          </div>
+          {this.props.children}
         </header>
 
         <section className="game__screen">
@@ -96,7 +92,8 @@ class GameArtist extends PureComponent {
 GameArtist.propTypes = {
   question: questionType,
   screenIndex: PropTypes.number,
-  onAnswer: PropTypes.func
+  onAnswer: PropTypes.func,
+  children: PropTypes.node
 };
 
 export default GameArtist;

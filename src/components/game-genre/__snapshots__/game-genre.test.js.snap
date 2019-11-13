@@ -40,19 +40,6 @@ exports[`GameGenre renders correctly 1`] = `
         00
       </span>
     </div>
-    <div
-      className="game__mistakes"
-    >
-      <div
-        className="wrong"
-      />
-      <div
-        className="wrong"
-      />
-      <div
-        className="wrong"
-      />
-    </div>
   </header>
   <section
     className="game__screen"

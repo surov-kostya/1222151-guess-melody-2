@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const MistakesCounter = ({mistakes}) => {
-  const mistakesArr = Array.fill(<div className="wrong"></div>, 0, mistakes - 1);
+  const mistakesArr = Array.from(Array(mistakes), (_, i) => <div key={i} className="wrong"></div>);
+
   return (
     <div className="game__mistakes">
       {mistakesArr}
@@ -11,7 +12,7 @@ const MistakesCounter = ({mistakes}) => {
 };
 
 MistakesCounter.propTypes = {
-  mistakes: PropTypes.number
+  mistakes: PropTypes.number,
 };
 
 export default MistakesCounter;

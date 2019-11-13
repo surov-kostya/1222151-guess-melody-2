@@ -14,7 +14,6 @@ class GameGenre extends PureComponent {
     this.state = {
       answers: props.question.answers,
       genre: props.question.genre,
-      screenIndex: props.screenIndex,
       chosenAnswers: [],
       activePlayer: -1
     };
@@ -35,11 +34,7 @@ class GameGenre extends PureComponent {
             <span className="timer__secs">00</span>
           </div>
 
-          <div className="game__mistakes">
-            <div className="wrong"></div>
-            <div className="wrong"></div>
-            <div className="wrong"></div>
-          </div>
+          {this.props.children}
         </header>
 
         <section className="game__screen">
@@ -78,7 +73,6 @@ class GameGenre extends PureComponent {
     this.setState({
       answers: this.props.question.answers,
       genre: this.props.question.genre,
-      screenIndex: this.props.screenIndex
     });
   }
 
@@ -109,8 +103,8 @@ class GameGenre extends PureComponent {
 
 GameGenre.propTypes = {
   question: questionType,
-  screenIndex: PropTypes.number,
-  onAnswer: PropTypes.func
+  onAnswer: PropTypes.func,
+  children: PropTypes.node
 };
 
 export default GameGenre;
