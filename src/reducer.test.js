@@ -65,6 +65,8 @@ describe(`Reducer works correctly`, () => {
     expect(reducer(undefined, {})).toEqual({
       step: -1,
       mistakes: 0,
+      gameTime: 5,
+      isGameOver: false
     });
   });
 
@@ -72,23 +74,31 @@ describe(`Reducer works correctly`, () => {
     expect(reducer({
       step: -1,
       mistakes: 0,
+      gameTime: 5,
+      isGameOver: false
     }, {
       type: ActionType.INC_STEP,
       payload: 1,
     })).toEqual({
       step: 0,
       mistakes: 0,
+      gameTime: 5,
+      isGameOver: false
     });
 
     expect(reducer({
       step: -1,
       mistakes: 0,
+      gameTime: 5,
+      isGameOver: false
     }, {
       type: ActionType.INC_STEP,
       payload: 0,
     })).toEqual({
       step: -1,
       mistakes: 0,
+      gameTime: 5,
+      isGameOver: false
     });
   });
 
@@ -96,23 +106,31 @@ describe(`Reducer works correctly`, () => {
     expect(reducer({
       step: -1,
       mistakes: 0,
+      gameTime: 5,
+      isGameOver: false
     }, {
       type: ActionType.INC_MISTAKES,
       payload: 1,
     })).toEqual({
       step: -1,
       mistakes: 1,
+      gameTime: 5,
+      isGameOver: false
     });
 
     expect(reducer({
       step: -1,
       mistakes: 0,
+      gameTime: 5,
+      isGameOver: false
     }, {
       type: ActionType.INC_MISTAKES,
       payload: 0,
     })).toEqual({
       step: -1,
       mistakes: 0,
+      gameTime: 5,
+      isGameOver: false
     });
   });
 
@@ -120,11 +138,15 @@ describe(`Reducer works correctly`, () => {
     expect(reducer({
       step: 1000000,
       mistakes: 12309,
+      gameTime: 5,
+      isGameOver: false
     }, {
       type: ActionType.RESET,
     })).toEqual({
       step: -1,
       mistakes: 0,
+      gameTime: 5,
+      isGameOver: false
     });
   });
 });

@@ -29,12 +29,6 @@ class GameArtist extends PureComponent {
               style={{filter: `url(#blur)`, transform: `rotate(-90deg) scaleY(-1)`, transformOrigin: `center`}} />
           </svg>
 
-          <div className="timer__value" xmlns="http://www.w3.org/1999/xhtml">
-            <span className="timer__mins">05</span>
-            <span className="timer__dots">:</span>
-            <span className="timer__secs">00</span>
-          </div>
-
           {this.props.children}
         </header>
 

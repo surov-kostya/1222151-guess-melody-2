@@ -48,7 +48,8 @@ exports[`App renders correctly 1`] = `
       <span
         className="timer__mins"
       >
-        05
+        0
+        0
       </span>
       <span
         className="timer__dots"
@@ -58,7 +59,7 @@ exports[`App renders correctly 1`] = `
       <span
         className="timer__secs"
       >
-        00
+        07
       </span>
     </div>
     <div

@@ -1,9 +1,13 @@
 const initialState = {
   step: -1,
-  mistakes: 0
+  mistakes: 0,
+  gameTime: 5,
+  isGameOver: false
 };
 
 export const ActionType = {
+  GAME_OVER: `GAME_OVER`,
+  DEC_TIME: `DEC_TIME`,
   INC_STEP: `INC_STEP`,
   INC_MISTAKES: `INC_MISTAKES`,
   RESET: `RESET`
@@ -11,6 +15,10 @@ export const ActionType = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionType.GAME_OVER:
+      return Object.assign({}, state, {isGameOver: true});
+    case ActionType.DEC_TIME:
+      return Object.assign({}, state, {gameTime: action.payload});
     case ActionType.INC_STEP:
       return Object.assign({}, state, {step: state.step + action.payload});
     case ActionType.INC_MISTAKES:
@@ -23,6 +31,25 @@ export const reducer = (state = initialState, action) => {
 };
 
 export const ActionCreator = {
+  reset: () => {
+    return {
+      type: ActionType.RESET
+    };
+  },
+
+  gameOver: () => {
+    return {
+      type: ActionType.GAME_OVER
+    };
+  },
+
+  decGameTime: (time) => {
+    return {
+      type: ActionType.DEC_TIME,
+      payload: time
+    };
+  },
+
   incStep: () => {
     return {
       type: ActionType.INC_STEP,

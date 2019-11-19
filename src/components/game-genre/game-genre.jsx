@@ -28,12 +28,6 @@ class GameGenre extends PureComponent {
             <img className="game__logo" src="img/melody-logo-ginger.png" alt="Угадай мелодию" />
           </a>
 
-          <div className="timer__value">
-            <span className="timer__mins">05</span>
-            <span className="timer__dots">:</span>
-            <span className="timer__secs">00</span>
-          </div>
-
           {this.props.children}
         </header>
 

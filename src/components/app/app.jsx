@@ -8,6 +8,8 @@ import Welcome from '../welcome/welcome';
 import GameArtist from '../game-artist/game-artist';
 import GameGenre from '../game-genre/game-genre';
 import MistakesCounter from '../mistakes-counter/mistakes-counter';
+import Timer from '../timer/timer';
+import GameOver from '../game-over/game-over';
 
 class App extends PureComponent {
   static getScreen(props) {
@@ -16,19 +18,28 @@ class App extends PureComponent {
       errorCount,
       onWelcomeScreenClick,
       step,
-      questions
+      questions,
+      isGameOver,
+      onRestart
     } = props;
-    const stepsToEnd = questions.length - step - 1;
+
+    if (isGameOver) {
+      return (
+        <GameOver onRestart={onRestart} />
+      );
+    }
 
     if (step !== -1) {
-      const {mistakes, onUserAnswer} = props;
+      const {mistakes, onUserAnswer, onTimeout, onTick} = props;
       const currentQuestion = questions[step];
+      const stepsToEnd = questions.length - step - 1;
 
       switch (currentQuestion.type) {
         case `genre`: return <GameGenre
           question={currentQuestion}
           onAnswer={(userAnswer) => onUserAnswer(userAnswer, currentQuestion, mistakes, errorCount, stepsToEnd)}
         >
+          <Timer time={gameTime} onTimeout={onTimeout} onTick={(time) => onTick(time)}/>
           <MistakesCounter mistakes={mistakes}/>
         </GameGenre>;
 
@@ -37,6 +48,7 @@ class App extends PureComponent {
           question={currentQuestion}
           onAnswer={(userAnswer) => onUserAnswer(userAnswer, currentQuestion, mistakes, errorCount, stepsToEnd)}
         >
+          <Timer time={gameTime} onTimeout={onTimeout} onTick={(time) => onTick(time)}/>
           <MistakesCounter mistakes={mistakes}/>
         </GameArtist>;
       }
@@ -69,13 +81,19 @@ App.propTypes = {
   errorCount: PropTypes.number,
   onWelcomeScreenClick: PropTypes.func.isRequired,
   onUserAnswer: PropTypes.func.isRequired,
+  onTimeout: PropTypes.func.isRequired,
+  onTick: PropTypes.func.isRequired,
+  onRestart: PropTypes.func.isRequired,
   step: PropTypes.number.isRequired,
-  mistakes: PropTypes.number.isRequired
+  mistakes: PropTypes.number.isRequired,
+  isGameOver: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   step: state.step,
-  mistakes: state.mistakes
+  mistakes: state.mistakes,
+  gameTime: state.gameTime,
+  isGameOver: state.isGameOver
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -83,7 +101,10 @@ const mapDispatchToProps = (dispatch) => ({
   onUserAnswer: (userAnswer, question, mistakes, maxMistakes, stepsToEnd) => {
     dispatch(ActionCreator.incStep());
     dispatch(ActionCreator.incMistakes(userAnswer, question, mistakes, maxMistakes, stepsToEnd));
-  }
+  },
+  onTimeout: () => dispatch(ActionCreator.gameOver()),
+  onTick: (time) => dispatch(ActionCreator.decGameTime(time)),
+  onRestart: () => dispatch(ActionCreator.reset())
 });
 
 export {App};

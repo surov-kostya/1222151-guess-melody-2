@@ -14,6 +14,10 @@ it(`App renders correctly`, () => {
           mistakes={1}
           onUserAnswer={() => {}}
           onWelcomeScreenClick={() => {}}
+          onTick={() => {}}
+          onTimeout={() => {}}
+          isGameOver={false}
+          onRestart={() => {}}
         />
     )
     .toJSON();
