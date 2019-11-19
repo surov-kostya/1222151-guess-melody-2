@@ -9,11 +9,11 @@ class GameGenre extends PureComponent {
 
     this._answerHelper = this._answerHelper.bind(this);
     this._playClickHandler = this._playClickHandler.bind(this);
+    this._submitHandler = this._submitHandler.bind(this);
 
     this.state = {
       answers: props.question.answers,
       genre: props.question.genre,
-      screenIndex: props.screenIndex,
       chosenAnswers: [],
       activePlayer: -1
     };
@@ -28,25 +28,14 @@ class GameGenre extends PureComponent {
             <img className="game__logo" src="img/melody-logo-ginger.png" alt="Угадай мелодию" />
           </a>
 
-          <div className="timer__value">
-            <span className="timer__mins">05</span>
-            <span className="timer__dots">:</span>
-            <span className="timer__secs">00</span>
-          </div>
-
-          <div className="game__mistakes">
-            <div className="wrong"></div>
-            <div className="wrong"></div>
-            <div className="wrong"></div>
-          </div>
+          {this.props.children}
         </header>
 
         <section className="game__screen">
           <h2 className="game__title">Выберите {this.state.genre} треки</h2>
           <form className="game__tracks" onSubmit={(evt) => {
             evt.preventDefault();
-            this.setState({activePlayer: -1});
-            this.props.onAnswer(this.state.chosenAnswers.filter((item) => item));
+            this._submitHandler();
           }}>
             {this.state.answers.map((item, i) => {
               return (
@@ -78,7 +67,6 @@ class GameGenre extends PureComponent {
     this.setState({
       answers: this.props.question.answers,
       genre: this.props.question.genre,
-      screenIndex: this.props.screenIndex
     });
   }
 
@@ -100,12 +88,17 @@ class GameGenre extends PureComponent {
       {activePlayer: prevState.activePlayer !== playerIndex ? playerIndex : -1}
     ));
   }
+
+  _submitHandler() {
+    this.props.onAnswer(this.state.chosenAnswers.filter((item) => item));
+    this.setState({chosenAnswers: [], activePlayer: -1});
+  }
 }
 
 GameGenre.propTypes = {
   question: questionType,
-  screenIndex: PropTypes.number,
-  onAnswer: PropTypes.func
+  onAnswer: PropTypes.func,
+  children: PropTypes.node
 };
 
 export default GameGenre;

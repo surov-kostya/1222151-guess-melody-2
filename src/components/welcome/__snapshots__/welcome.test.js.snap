@@ -16,6 +16,7 @@ exports[`Welcome renders correctly 1`] = `
   </div>
   <button
     className="welcome__button"
+    onClick={[Function]}
   >
     <span
       className="visually-hidden"
@@ -38,7 +39,7 @@ exports[`Welcome renders correctly 1`] = `
   >
     <li>
       За 
-      7
+      0
        минут нужно ответить на все вопросы.
     </li>
     <li>

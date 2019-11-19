@@ -29,17 +29,7 @@ class GameArtist extends PureComponent {
               style={{filter: `url(#blur)`, transform: `rotate(-90deg) scaleY(-1)`, transformOrigin: `center`}} />
           </svg>
 
-          <div className="timer__value" xmlns="http://www.w3.org/1999/xhtml">
-            <span className="timer__mins">05</span>
-            <span className="timer__dots">:</span>
-            <span className="timer__secs">00</span>
-          </div>
-
-          <div className="game__mistakes">
-            <div className="wrong"></div>
-            <div className="wrong"></div>
-            <div className="wrong"></div>
-          </div>
+          {this.props.children}
         </header>
 
         <section className="game__screen">
@@ -96,7 +86,8 @@ class GameArtist extends PureComponent {
 GameArtist.propTypes = {
   question: questionType,
   screenIndex: PropTypes.number,
-  onAnswer: PropTypes.func
+  onAnswer: PropTypes.func,
+  children: PropTypes.node
 };
 
 export default GameArtist;
